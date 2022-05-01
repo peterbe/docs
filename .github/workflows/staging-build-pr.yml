@@ -77,7 +77,7 @@ jobs:
         run: exit 1
 
       - name: Setup node
-        uses: actions/setup-node@04c56d2f954f1e4c69436aa54cfef261a018f458
+        uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854
         with:
           node-version: 16.13.x
           cache: npm

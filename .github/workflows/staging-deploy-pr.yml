@@ -62,7 +62,7 @@ jobs:
     steps:
       - name: Find the originating pull request
         id: pr
-        uses: actions/github-script@2b34a689ec86a68d8ab9478298f91d5401337b7d
+        uses: actions/github-script@c713e510dbd7d213d92d41b7a7805a986f4c5c66
         env:
           BUILD_ACTIONS_RUN_ID: ${{ env.BUILD_ACTIONS_RUN_ID }}
         with:
@@ -174,7 +174,7 @@ jobs:
     steps:
       - name: Verify build workflow run was not cancelled
         id: check-workflow-run
-        uses: actions/github-script@2b34a689ec86a68d8ab9478298f91d5401337b7d
+        uses: actions/github-script@c713e510dbd7d213d92d41b7a7805a986f4c5c66
         env:
           BUILD_ACTIONS_RUN_ID: ${{ env.BUILD_ACTIONS_RUN_ID }}
         with:
@@ -224,7 +224,7 @@ jobs:
     steps:
       - name: Check pull request state
         id: check-pr
-        uses: actions/github-script@2b34a689ec86a68d8ab9478298f91d5401337b7d
+        uses: actions/github-script@c713e510dbd7d213d92d41b7a7805a986f4c5c66
         env:
           PR_NUMBER: ${{ needs.pr-metadata.outputs.number }}
         with:
@@ -273,7 +273,7 @@ jobs:
       source_blob_url: ${{ steps.build-source.outputs.download_url }}
     steps:
       - name: Create initial status
-        uses: actions/github-script@2b34a689ec86a68d8ab9478298f91d5401337b7d
+        uses: actions/github-script@c713e510dbd7d213d92d41b7a7805a986f4c5c66
         env:
           CONTEXT_NAME: ${{ env.CONTEXT_NAME }}
           ACTIONS_RUN_LOG: ${{ env.ACTIONS_RUN_LOG }}
@@ -366,7 +366,7 @@ jobs:
 
       - name: Create a Heroku build source
         id: build-source
-        uses: actions/github-script@2b34a689ec86a68d8ab9478298f91d5401337b7d
+        uses: actions/github-script@c713e510dbd7d213d92d41b7a7805a986f4c5c66
         env:
           HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
         with:
@@ -407,7 +407,7 @@ jobs:
             --data-binary @app.tar.gz
 
       - name: Create failure status
-        uses: actions/github-script@2b34a689ec86a68d8ab9478298f91d5401337b7d
+        uses: actions/github-script@c713e510dbd7d213d92d41b7a7805a986f4c5c66
         if: ${{ failure() }}
         env:
           CONTEXT_NAME: ${{ env.CONTEXT_NAME }}
@@ -450,7 +450,7 @@ jobs:
     steps:
       - name: Check pull request state
         id: check-pr
-        uses: actions/github-script@2b34a689ec86a68d8ab9478298f91d5401337b7d
+        uses: actions/github-script@c713e510dbd7d213d92d41b7a7805a986f4c5c66
         env:
           PR_NUMBER: ${{ needs.pr-metadata.outputs.number }}
         with:
@@ -503,7 +503,7 @@ jobs:
         run: .github/actions-scripts/staging-deploy.js
 
       - name: Mark the deployment as inactive if timed out
-        uses: actions/github-script@2b34a689ec86a68d8ab9478298f91d5401337b7d
+        uses: actions/github-script@c713e510dbd7d213d92d41b7a7805a986f4c5c66
         if: ${{ steps.deploy.outcome == 'cancelled' }}
         env:
           DEPLOYMENT_ID: ${{ steps.deploy.outputs.deploymentId }}
@@ -534,7 +534,7 @@ jobs:
             console.log('⏲️ Deployment status: error - The deployment timed out...')
 
       - name: Create failure status
-        uses: actions/github-script@2b34a689ec86a68d8ab9478298f91d5401337b7d
+        uses: actions/github-script@c713e510dbd7d213d92d41b7a7805a986f4c5c66
         if: ${{ failure() }}
         env:
           CONTEXT_NAME: ${{ env.CONTEXT_NAME }}
